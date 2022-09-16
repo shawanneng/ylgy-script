@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="浪客网络欢迎您" />
+  <meta name="referrer" content="never">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" />
+  <title>浪客网络欢迎您</title>
+  <style>
+    body {
+      background: url(https://gimg3.baidu.com/game/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2Fc07fdaceb82c6e5321084b3cbbd63208.jpeg&refer=http%3A%2F%2Fwww.baidu.com&app=2014&size=w256&n=0&g=0n&q=100&fmt=auto?sec=1663520400&t=bf2cf6c65a0ca343aaeeab3bbfb9fc38) no-repeat;
+      background-size: 100% 100%;
+      height: 90vh;
+    }
+
+    #app {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    #center {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      color: brown;
+      align-items: center;
+    }
+
+    #account {
+      height: 30px;
+      width: 100%;
+    }
+
+    #title {
+      color: brown;
+      font-size: 44px;
+    }
+
+    .btn {
+      margin-top: 30px;
+
+    }
+
+    button {
+      width: 100px;
+      height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <h1 id="title">浪客网络欢迎您</h1>
+
+
+    <div id="center">
+      <h3>请输入您的Token</h3>
+      <textarea id="token" cols="50" rows="5" placeholder="请输入你抓包到的正确token值"></textarea>
+    </div>
+
+    <div id="center">
+      <h3>请输入通关次数</h3>
+      <input type="number" id="account" placeholder="请输入你要通过的次数,不能大于50否则提交无效">
+    </div>
+
+    <div id="center" class="btn">
+      <button>提交</button>
+    </div>
+  </div>
+
+
+  <script>
+    document.querySelector('button').addEventListener('click', function () {
+      const token = document.getElementById('token').value
+      const account = document.getElementById('account').value
+      if (+account > 50 || !token) {
+        return
+      }
+      let xhr = new XMLHttpRequest();
+      xhr.open('put', '/run');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(
+        JSON.stringify({
+          token,
+          account,
+        })
+      );
+
+      window.alert('提交成功,请刷新小程序查看!浪客网络,只做三亿人都在使用的服务!')
+    })
+  </script>
+</body>
+
+</html>
